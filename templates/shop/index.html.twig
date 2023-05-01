@@ -1,0 +1,182 @@
+  {% block css %}
+      <!-- css -->
+      <link rel="stylesheet" href="{{ asset('https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic')}}" type="text/css">
+      <link rel="stylesheet" href="{{ asset('https://fonts.googleapis.com/css?family=Montserrat:400,700')}}"  type="text/css">
+      <link rel="stylesheet" href="{{ asset('css/fontello/css/fontello.min.css')}}" type="text/css" media="all" />
+
+      <link rel="stylesheet" href="{{ asset('css/woocommerce/woocommerce-layout.css')}}" type="text/css" media="all" />
+      <link rel="stylesheet" href="{{ asset('css/woocommerce/woocommerce-smallscreen.css')}}" type="text/css" media="only screen and (max-width: 768px)" />
+      <link rel="stylesheet" href="{{ asset('css/woocommerce/woocommerce.css" type="text/css')}}" media="all" />
+
+      <link rel="stylesheet" href="{{ asset('css/style.min.css')}}" type="text/css" media="all" />
+      <link rel="stylesheet" href="{{ asset('css/core.animation.min.css')}}" type="text/css" media="all" />
+      <link rel="stylesheet" href="{{ asset('css/shortcodes.min.css')}}" type="text/css" media="all" />
+
+      <link rel="stylesheet" href="{{ asset('css/plugin.woocommerce.min.css')}}" type="text/css" media="all" />
+
+      <link rel="stylesheet" href="{{ asset('css/skin.min.css')}}" type="text/css" media="all" />
+
+      <link rel="stylesheet" href="{{ asset('css/responsive.min.css')}}" type="text/css" media="all" />
+
+      <link rel="stylesheet" href="{{ asset('js/core.messages/core.messages.min.css')}}" type="text/css" media="all" />
+      <link rel="stylesheet" href="{{ asset('js/magnific/magnific-popup.min.css')}}" type="text/css" media="all" />
+
+
+  {% endblock %}
+
+
+
+{% block content %}
+<!-- Top Panel -->
+<div class="top_panel_title top_panel_style_3 title_present breadcrumbs_present scheme_original">
+    <div class="top_panel_title_inner top_panel_inner_style_3 title_present_inner breadcrumbs_present_inner">
+        <div class="content_wrap">
+            <h1 class="page_title">Hallao</h1>
+            <div class="breadcrumbs">
+                <a class="breadcrumbs_item home" href="#">Home</a>
+                <span class="breadcrumbs_delimiter"></span>
+                <span class="breadcrumbs_item current">Shop</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Top Panel -->
+<!-- Page Content Wrap -->
+<div class="page_content_wrap page_paddings_yes">
+    <div class="content_wrap">
+        <!-- Content -->
+        <div class="content">
+            <div class="list_products shop_mode_thumbs">
+                <div class="mode_buttons">
+                    <a href="shop.html" class="woocommerce_thumbs icon-th" title="Show products as thumbs"></a>
+                    <a href="shop-list.html" class="woocommerce_list icon-th-list" title="Show products as list"></a>
+                </div>
+                <p class="woocommerce-result-count">
+                    Showing 1&ndash;9 of 10 results</p>
+                <form class="woocommerce-ordering" method="get">
+                    <select name="orderby" class="orderby">
+                        <option value="menu_order" selected="selected">Default sorting</option>
+                        <option value="popularity">Sort by popularity</option>
+                        <option value="rating">Sort by average rating</option>
+                        <option value="date">Sort by newness</option>
+                        <option value="price">Sort by price: low to high</option>
+                        <option value="price-desc">Sort by price: high to low</option>
+                    </select>
+                </form>
+                {% for p in oeuvres %}
+                    <div class="post_item_wrap" >
+                        <div class="post_featured">
+                            <div class="post_thumb"  >
+                                <a class="hover_icon hover_icon_link" href="#">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="post_content">
+                            <h3>
+                                <a href="#">{{ p.NomOeuvre }}</a>
+                            </h3>
+
+                            <span class="price">
+                                                    <span class="amount">{{ p.prix }}</span>
+                                                </span>
+                            <a href="{{ path('add',{'id':p.id}) }}"class="button product_type_simple add_to_cart_button">Add to cart</a>
+                        </div>
+                    </div>
+                    </li>
+
+                {% endfor %}
+            </div>
+            <!-- /Content -->
+            <!-- Sidebar -->
+            <div class="sidebar widget_area scheme_original">
+                <div class="sidebar_inner widget_area_inner">
+                    <!-- Widget: Product Categories -->
+                    <aside class="widget woocommerce widget_product_categories">
+                        <h5 class="widget_title">Categories</h5>
+                        <ul class="product-categories">
+                        </ul>
+                    </aside>
+                    <!-- /Widget: Product Categories -->
+                    <!-- Widget: Price Filter -->
+                    <aside class="widget woocommerce widget_price_filter">
+                        <h5 class="widget_title">Filter by price</h5>
+                        <form method="get" action="#">
+                            <div class="price_slider_wrapper">
+                                <div class="price_slider display_none"></div>
+                                <div class="price_slider_amount">
+                                    <input type="text" id="min_price" name="min_price" value="" data-min="19" placeholder="Min price" />
+                                    <input type="text" id="max_price" name="max_price" value="" data-max="386" placeholder="Max price" />
+                                    <button type="submit" class="button">Filter</button>
+                                    <div class="price_label display_none">
+                                        Price:
+                                        <span class="from"></span> &mdash;
+                                        <span class="to"></span>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </aside>
+                    <!-- /Widget: Price Filter -->
+                    <!-- Widget: Product Search -->
+                    <aside class="widget woocommerce widget_product_search">
+                        <form method="get" class="search_form" action="#">
+                            <input type="text" class="search_field" placeholder="Products Search&hellip;" value="" name="s" title="Products search:" />
+                            <button class="search_button icon-search" type="submit"></button>
+                        </form>
+                    </aside>
+                    <!-- /Widget: Product Search -->
+                    <!-- Widget: Product Tag Cloud -->
+                    <aside class="widget woocommerce widget_product_tag_cloud">
+                        <h5 class="widget_title">Product Tags</h5>
+                    </aside>
+                    <!-- /Widget: Product Tag Cloud -->
+                    <!-- Widget: Top Rated Products -->
+                    <aside class="widget woocommerce widget_top_rated_products">
+                        <h5 class="widget_title">Top Rated Products</h5>
+                    </aside>
+                    <!-- /Widget: Top Rated Products -->
+                </div>
+            </div>
+            <!-- /Sidebar -->
+        </div>
+    </div>
+
+
+    <!-- js-->
+
+    <a href="#" class="scroll_to_top icon-up" title="Scroll to top"></a>
+
+    {% endblock %}
+
+
+
+    {% block js%}
+
+
+
+        <script type="text/javascript" src="{{ asset('js/jquery/jquery.js')}}"></script>
+
+        <script type="text/javascript" src="{{ asset('js/_packed.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('js/global.min.js')}}"></script>
+
+        <script type="text/javascript" src="{{ asset('js/vendor/woocommerce/woocommerce.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('js/vendor/woocommerce/cart-fragments.min.js')}}"></script>
+
+        <script type="text/javascript" src="{{ asset('js/core.utils.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('js/core.init.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('js/theme.init.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('js/shortcodes.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('js/core.messages/core.messages.min.js')}}"></script>
+
+        <script type="text/javascript" src="{{ asset('js/vendor/woocommerce/jquery-ui-touch-punch/jquery-ui-touch-punch.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('js/vendor/woocommerce/price-slider.min.js')}}">
+        </script>
+
+
+
+
+    {% endblock %}
+
+
+

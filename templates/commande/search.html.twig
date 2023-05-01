@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if commandes|length == 0 %}
+        <h2>No results found for "{{ query }}"</h2>
+    {% else %}
+        <h2>Search results for "{{ query }}"</h2>
+        <table class="table">
+        <tbody>
+        <form method="get" action="{{ path('search') }}">
+    <div class="form-group">
+        <input type="text" name="q" placeholder="Search commande" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<form class="form">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Telephone</th>
+                <th>PrixTotal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.Nom }}</td>
+                <td>{{ commande.Prenom }}</td>
+                <td>{{ commande.Adresse }}</td>
+                <td>{{ commande.Telephone }}</td>
+                <td>{{ commande.PrixTotal }}</td>
+                <td>
+                    <a href="{{ path('app_commande_show', {'id': commande.id}) }}">show</a>
+                    <a href="{{ path('app_commande_edit', {'id': commande.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <input type="button" id="create_pdf" value="Generate PDF">
+   
+</form> 
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}
